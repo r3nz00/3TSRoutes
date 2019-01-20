@@ -88,7 +88,8 @@ public class MapActivity extends AppCompatActivity {
                             nodes.add(b.getPosition());
                         }
 
-                            MapWrapper.DrawRoute(mapboxMap,nodes,getApplicationContext());
+                        for (int i = 0; i < nodes.size() - 1; i++)
+                            MapWrapper.DrawRoute(mapboxMap,nodes.get(i), nodes.get(i+1), getApplicationContext());
                         getDeviceLocation(mapboxMap);
                     }
                 });

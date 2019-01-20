@@ -16,19 +16,27 @@ public class BusStop {
         return new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
     }
 
+    long getArrivalTimeUnix() {
+        return arrivalTime - (System.currentTimeMillis() / 1000L);
+    }
+
+    long getDepartureTimeUnix() {
+        return departureTime - (System.currentTimeMillis() / 1000L);
+    }
+
     long getEtaMinutes() {
-        return arrivalTime / 60;
+        return getArrivalTimeUnix() / 60;
     }
 
     long getEtaSeconds() {
-        return arrivalTime - (getEtaMinutes() * 60);
+        return getArrivalTimeUnix() - (getEtaMinutes() * 60);
     }
 
     long getEtdMinutes() {
-        return departureTime / 60;
+        return getDepartureTimeUnix() / 60;
     }
 
     long getEtdSeconds() {
-        return departureTime - (getEtdMinutes() * 60);
+        return getDepartureTimeUnix() - (getEtdMinutes() * 60);
     }
 }

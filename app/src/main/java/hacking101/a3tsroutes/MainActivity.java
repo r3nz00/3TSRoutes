@@ -18,8 +18,6 @@ import java.util.Arrays;
 import android.util.Log;
 import android.widget.Button;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.transit.realtime.GtfsRealtime;
