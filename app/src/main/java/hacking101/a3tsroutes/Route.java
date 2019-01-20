@@ -5,7 +5,9 @@ import android.util.Log;
 import com.google.transit.realtime.GtfsRealtime;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Route {
     private String routeId = null;
@@ -50,6 +52,16 @@ public class Route {
         return new ArrayList<BusStop>(stops);
     }
 
+    public static Set<String> getRouteIds() {
+        OpenDataController openData = OpenDataController.getInstance();
+        openData.updateTripFeed();
+        HashSet<String> ids = new HashSet<>();
+        for (GtfsRealtime.FeedEntity entity: openData.getTripEntities()) {
+            if (!entity.hasTripUpdate())
+                continue;
+            ids.add(entity.getTripUpdate().getTrip().getRouteId());
+        }
 
-
+        return ids;
+    }
 }

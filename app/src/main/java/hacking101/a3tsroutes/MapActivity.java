@@ -55,7 +55,7 @@ public class MapActivity extends AppCompatActivity {
         final LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
         //Get routeID
-        final int routeID = getIntent().getIntExtra(ROUTE_ID_EXTRA,8);
+        final String routeID = getIntent().getStringExtra(ROUTE_ID_EXTRA);
         Log.i("ROUTE_ID", ""+routeID);
 
         if (ContextCompat.checkSelfPermission(this,

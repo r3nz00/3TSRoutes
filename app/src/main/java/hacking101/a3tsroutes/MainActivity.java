@@ -28,6 +28,7 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.List;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mainRecyclerView;
     private MainRecyclerViewAdapter mainRecycleViewAdapter;
     private RecyclerView.LayoutManager mainLayoutManager;
-    private ArrayList<Route> myDataset = new ArrayList<Route>();
+    private ArrayList<String> myDataset = new ArrayList<>();
     private FloatingActionButton addRouteButton;
     private OpenDataController openData;
     private SwipeController swipeController;
@@ -107,7 +108,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        myDataset.add(new Route("8"));
+        Set<String> route = Route.getRouteIds();
+
+        for (String routeId: route) {
+            myDataset.add(routeId);
+        }
+
 //        Route route = new Route("8");
 //        Intent intent = new Intent(this, MapActivity.class);
 //        intent.putExtra(ROUTE_ID_EXTRA, 8);
