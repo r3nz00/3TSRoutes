@@ -39,12 +39,11 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mainRecyclerView;
     private MainRecyclerViewAdapter mainRecycleViewAdapter;
     private RecyclerView.LayoutManager mainLayoutManager;
-    private String[] testStrings = {"Static string", "Second Static String","1","2","3","4","1","2","3","4","1","2","3","4"};
-    private ArrayList<String> myDataset = new ArrayList<String>(Arrays.asList(testStrings));
+    private ArrayList<Route> myDataset = new ArrayList<Route>();
     private Button addRouteButton;
-
-    SwipeController swipeController;
-    ItemTouchHelper itemTouchhelper;
+    private OpenDataController openData;
+    private SwipeController swipeController;
+    private ItemTouchHelper itemTouchhelper;
 
 
     Timer myTimer;
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        openData = OpenDataController.getInstance();
         mainRecyclerView = (RecyclerView) findViewById(R.id.MainRecyclerView);
 
         // use this setting to improve performance if you know that changes
@@ -64,8 +63,9 @@ public class MainActivity extends AppCompatActivity {
         mainLayoutManager = new LinearLayoutManager(this);
         mainRecyclerView.setLayoutManager(mainLayoutManager);
 
-        // specify an adapter (see also next example)
 
+        myDataset.add(new Route("8"));
+        // specify an adapter (see also next example)
         mainRecycleViewAdapter = new MainRecyclerViewAdapter(myDataset, this);
         mainRecyclerView.setAdapter(mainRecycleViewAdapter);
 
@@ -76,8 +76,7 @@ public class MainActivity extends AppCompatActivity {
         addRouteButton = (Button) findViewById(R.id.floatingActionButton);
         addRouteButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent addRouteIntent = new Intent(this, AddRoute.class);
-                startActivity(addRouteIntent);
+                startRouteAdder();
             }
         });
 //        myTimer = new Timer();
@@ -108,12 +107,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        OpenDataController openData = OpenDataController.getInstance();
+
         openData.updateAllFeeds();
 //        Route route = new Route("8");
 //        Intent intent = new Intent(this, MapActivity.class);
 //        intent.putExtra(ROUTE_ID_EXTRA, 8);
 //        startActivity(intent);
+    }
+
+    public void startRouteAdder(){
+//        openData.updateAllFeeds();
+        Intent addRouteIntent = new Intent(this, AddRoute.class);
+        startActivity(addRouteIntent);
     }
 
 //    public void othermethod(){

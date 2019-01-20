@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerViewAdapter.MainViewHolder> {
-    private ArrayList<String> mainDataset;
+    private ArrayList<Route> mainDataset;
     private Activity activity;
 
     // Provide a reference to the views for each data item
@@ -42,7 +42,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MainRecyclerViewAdapter(ArrayList<String> myDataset, Activity mainActivity) {
+    public MainRecyclerViewAdapter(ArrayList<Route> myDataset, Activity mainActivity) {
         mainDataset = myDataset;
         activity = mainActivity;
     }
@@ -66,7 +66,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 
-        ((TextView) holder.mainTextView.findViewById(R.id.Recycler_View_Route_Number)).setText(mainDataset.get(position));
+        ((TextView) holder.mainTextView.findViewById(R.id.Recycler_View_Route_Number)).setText(mainDataset.get(position).getRouteID());
 //        ((TextView) holder.mainTextView.findViewById(R.id.Recycler_View_Bottom_Text)).setText(mainDataset[position+1]);
 //                setText(mainDataset[position]);
 
@@ -84,12 +84,12 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         this.notifyItemRangeChanged(position, this.getItemCount());
     }
 
-    public void addItem(String newItem){
+    public void addItem(Route newItem){
         mainDataset.add(0, newItem);
         this.notifyDataSetChanged();
     }
 
-    public void addItems(ArrayList<String> newItems){
+    public void addItems(ArrayList<Route> newItems){
         mainDataset.addAll(0, newItems);
         this.notifyDataSetChanged();
     }
