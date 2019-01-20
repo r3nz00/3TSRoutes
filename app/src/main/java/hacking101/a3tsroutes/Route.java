@@ -26,7 +26,7 @@ public class Route {
                     continue;
 
                 if (stopTime.hasArrival())
-                    stop.arrivalTime = stopTime.getArrival().getTime() - (System.currentTimeMillis() / 1000L);
+                    stop.arrivalTime = stopTime.getArrival().getTime();
                 else if (stopTime.hasDeparture())
                     stop.departureTime = stopTime.getDeparture().getTime() - (System.currentTimeMillis() / 1000L);
 
