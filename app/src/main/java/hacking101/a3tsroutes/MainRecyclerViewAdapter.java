@@ -11,8 +11,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static hacking101.a3tsroutes.MapActivity.ROUTE_ID_EXTRA;
+
 public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerViewAdapter.MainViewHolder> {
-    private ArrayList<Route> mainDataset;
+    private ArrayList<String> mainDataset;
     private Activity activity;
 
     // Provide a reference to the views for each data item
@@ -21,16 +23,19 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
     public static class MainViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public LinearLayout mainTextView;
+        public String position;
         private Activity activity;
 
         public MainViewHolder(LinearLayout v, Activity mainActivity) {
             super(v);
             mainTextView = v;
             activity = mainActivity;
+
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent mapIntent = new Intent(activity, MapActivity.class);
+                    mapIntent.putExtra(ROUTE_ID_EXTRA, MainViewHolder.this.position);
                     activity.startActivity(mapIntent);
 //                    Log.d("OnClickTag", "You Clicked : " +
 //                            ((TextView) mainTextView.findViewById(R.id.Recycler_View_Next_Stop)).getText());
@@ -42,7 +47,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MainRecyclerViewAdapter(ArrayList<Route> myDataset, Activity mainActivity) {
+    public MainRecyclerViewAdapter(ArrayList<String> myDataset, Activity mainActivity) {
         mainDataset = myDataset;
         activity = mainActivity;
     }
@@ -66,9 +71,11 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 
+
         ((TextView) holder.mainTextView.findViewById(R.id.Recycler_View_Route_Number)).setText(mainDataset.get(position).getRouteID());
         ((TextView) holder.mainTextView.findViewById(R.id.Recycler_View_Route_Number)).setText(mainDataset.get(position).getRouteID());
         ((TextView) holder.mainTextView.findViewById(R.id.Recycler_View_Route_Number)).setText(mainDataset.get(position).getRouteID());
+
 //        ((TextView) holder.mainTextView.findViewById(R.id.Recycler_View_Bottom_Text)).setText(mainDataset[position+1]);
 //                setText(mainDataset[position]);
 
@@ -86,12 +93,12 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         this.notifyItemRangeChanged(position, this.getItemCount());
     }
 
-    public void addItem(Route newItem){
+    public void addItem(String newItem){
         mainDataset.add(0, newItem);
         this.notifyDataSetChanged();
     }
 
-    public void addItems(ArrayList<Route> newItems){
+    public void addItems(ArrayList<String> newItems){
         mainDataset.addAll(0, newItems);
         this.notifyDataSetChanged();
     }

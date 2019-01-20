@@ -28,6 +28,7 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.List;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private MainRecyclerViewAdapter mainRecycleViewAdapter;
     private RecyclerView.LayoutManager mainLayoutManager;
     private ArrayList<Route> myDataset = new ArrayList<Route>();
+
     private FloatingActionButton addRouteButton;
     private OpenDataController openData;
     private SwipeController swipeController;
@@ -51,7 +53,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         openData = OpenDataController.getInstance();
+        openData.updateAllFeeds();
+
         mainRecyclerView = (RecyclerView) findViewById(R.id.MainRecyclerView);
 
         // use this setting to improve performance if you know that changes
@@ -62,8 +67,6 @@ public class MainActivity extends AppCompatActivity {
         mainLayoutManager = new LinearLayoutManager(this);
         mainRecyclerView.setLayoutManager(mainLayoutManager);
 
-
-        //myDataset.add(new Route("8"));
         // specify an adapter (see also next example)
         mainRecycleViewAdapter = new MainRecyclerViewAdapter(myDataset, this);
         mainRecyclerView.setAdapter(mainRecycleViewAdapter);
@@ -106,8 +109,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        Set<String> route = Route.getRouteIds();
 
-        openData.updateAllFeeds();
+        for (String routeId: route) {
+            myDataset.add(routeId);
+        }
+
 //        Route route = new Route("8");
 //        Intent intent = new Intent(this, MapActivity.class);
 //        intent.putExtra(ROUTE_ID_EXTRA, 8);
