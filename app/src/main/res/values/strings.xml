@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">3TS Routes</string>
+    <string name="Bus_tracking_header">Tracked Buses</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoiY3VydGdnIiwiYSI6ImNqcjN4YmR2cDBieWo0M3J3eHM2NndzZ3YifQ.U94oGuGo_P6DTcbGYTZ4Eg</string>
+    <string name="permissions">PLEASE ACCEPT PERMISSIONS MAN</string>
+</resources>
