@@ -3,6 +3,7 @@ package hacking101.a3tsroutes;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.StrictMode;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private MainRecyclerViewAdapter mainRecycleViewAdapter;
     private RecyclerView.LayoutManager mainLayoutManager;
     private ArrayList<Route> myDataset = new ArrayList<Route>();
-    private Button addRouteButton;
+    private FloatingActionButton addRouteButton;
     private OpenDataController openData;
     private SwipeController swipeController;
     private ItemTouchHelper itemTouchhelper;
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         mainRecyclerView.setLayoutManager(mainLayoutManager);
 
 
-        myDataset.add(new Route("8"));
+        //myDataset.add(new Route("8"));
         // specify an adapter (see also next example)
         mainRecycleViewAdapter = new MainRecyclerViewAdapter(myDataset, this);
         mainRecyclerView.setAdapter(mainRecycleViewAdapter);
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         itemTouchhelper = new ItemTouchHelper(swipeController);
         itemTouchhelper.attachToRecyclerView(mainRecyclerView);
 
-        addRouteButton = (Button) findViewById(R.id.floatingActionButton);
+        addRouteButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
         addRouteButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startRouteAdder();
