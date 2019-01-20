@@ -16,8 +16,6 @@ import java.util.Arrays;
 
 import android.util.Log;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.transit.realtime.GtfsRealtime;
@@ -88,11 +86,11 @@ public class MainActivity extends AppCompatActivity {
 //        }, 0, 30000);
 
         // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("bus");
-
-        BusCapacity newBus = new BusCapacity("1234", "321", 15);
-        myRef.setValue(newBus);
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference("bus");
+//
+//        BusCapacity newBus = new BusCapacity("1234", "321", 15);
+//        myRef.setValue(newBus);
     }
 
     @Override
@@ -101,9 +99,9 @@ public class MainActivity extends AppCompatActivity {
         OpenDataController openData = OpenDataController.getInstance();
         openData.updateAllFeeds();
 //        Route route = new Route("8");
-//        Intent intent = new Intent(this, MapActivity.class);
-//        intent.putExtra(ROUTE_ID_EXTRA, 8);
-//        startActivity(intent);
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.putExtra(ROUTE_ID_EXTRA, 8);
+        startActivity(intent);
     }
 
 //    public void othermethod(){
