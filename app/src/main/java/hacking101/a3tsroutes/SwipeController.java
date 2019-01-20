@@ -19,12 +19,13 @@ public class SwipeController extends Callback {
 
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+        myAdapter.updateItems();
         return makeMovementFlags(0, LEFT | RIGHT);
     }
 
     @Override
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-        myAdapter.notifyDataSetChanged();
+        myAdapter.updateItems();
         return false;
     }
 

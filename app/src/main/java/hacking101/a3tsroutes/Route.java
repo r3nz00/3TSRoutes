@@ -56,7 +56,9 @@ public class Route {
         return new ArrayList<BusStop>(stops);
     }
 
+
     public static List<String> getRouteIds() {
+
         OpenDataController openData = OpenDataController.getInstance();
         openData.updateTripFeed();
         ArrayList<String> ids = new ArrayList<>();
