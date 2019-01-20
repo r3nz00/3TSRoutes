@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mainRecyclerView;
     private MainRecyclerViewAdapter mainRecycleViewAdapter;
     private RecyclerView.LayoutManager mainLayoutManager;
-    private ArrayList<String> myDataset = new ArrayList<>();
+    private ArrayList<Route> myDataset = new ArrayList<>();
     private FloatingActionButton addRouteButton;
     private OpenDataController openData;
     private SwipeController swipeController;
@@ -108,11 +108,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Set<String> route = Route.getRouteIds();
-
-        for (String routeId: route) {
-            myDataset.add(routeId);
-        }
 
 //        Route route = new Route("8");
 //        Intent intent = new Intent(this, MapActivity.class);

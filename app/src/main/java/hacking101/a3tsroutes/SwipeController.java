@@ -24,6 +24,7 @@ public class SwipeController extends Callback {
 
     @Override
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+        myAdapter.notifyDataSetChanged();
         return false;
     }
 
