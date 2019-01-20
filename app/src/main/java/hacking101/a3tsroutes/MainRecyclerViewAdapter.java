@@ -70,8 +70,12 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
     public void onBindViewHolder(MainViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.position = mainDataset.get(position);
-        ((TextView) holder.mainTextView.findViewById(R.id.Recycler_View_Route_Number)).setText(mainDataset.get(position));
+
+
+        ((TextView) holder.mainTextView.findViewById(R.id.Recycler_View_Route_Number)).setText(mainDataset.get(position).getRouteID());
+        ((TextView) holder.mainTextView.findViewById(R.id.Recycler_View_Route_Number)).setText(mainDataset.get(position).getRouteID());
+        ((TextView) holder.mainTextView.findViewById(R.id.Recycler_View_Route_Number)).setText(mainDataset.get(position).getRouteID());
+
 //        ((TextView) holder.mainTextView.findViewById(R.id.Recycler_View_Bottom_Text)).setText(mainDataset[position+1]);
 //                setText(mainDataset[position]);
 
@@ -96,6 +100,10 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
 
     public void addItems(ArrayList<String> newItems){
         mainDataset.addAll(0, newItems);
+        this.notifyDataSetChanged();
+    }
+
+    public void updateItems(){
         this.notifyDataSetChanged();
     }
 }

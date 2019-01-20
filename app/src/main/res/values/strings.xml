@@ -5,4 +5,6 @@
     <string name="mapbox_access_token">pk.eyJ1IjoiY3VydGdnIiwiYSI6ImNqcjN4YmR2cDBieWo0M3J3eHM2NndzZ3YifQ.U94oGuGo_P6DTcbGYTZ4Eg</string>
     <string name="permissions">PLEASE ACCEPT PERMISSIONS MAN</string>
     <string name="title_activity_add_route">AddRoute</string>
+    <string name="route_enter_field">Please Enter A Route Number</string>
+    <string name="add_route_button">Search</string>
 </resources>

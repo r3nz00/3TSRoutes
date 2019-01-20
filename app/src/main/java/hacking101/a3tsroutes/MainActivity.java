@@ -39,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mainRecyclerView;
     private MainRecyclerViewAdapter mainRecycleViewAdapter;
     private RecyclerView.LayoutManager mainLayoutManager;
-    private ArrayList<String> myDataset = new ArrayList<>();
+    private ArrayList<Route> myDataset = new ArrayList<Route>();
+
     private FloatingActionButton addRouteButton;
     private OpenDataController openData;
     private SwipeController swipeController;
@@ -121,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startRouteAdder(){
-//        openData.updateAllFeeds();
+        openData.updateAllFeeds();
         Intent addRouteIntent = new Intent(this, AddRoute.class);
         startActivity(addRouteIntent);
     }
