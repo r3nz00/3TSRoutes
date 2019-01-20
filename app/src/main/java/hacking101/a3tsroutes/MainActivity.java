@@ -74,12 +74,12 @@ public class MainActivity extends AppCompatActivity {
         itemTouchhelper = new ItemTouchHelper(swipeController);
         itemTouchhelper.attachToRecyclerView(mainRecyclerView);
 
-        addRouteButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
-        addRouteButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startRouteAdder();
-            }
-        });
+//        addRouteButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+//        addRouteButton.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                startRouteAdder();
+//            }
+//        });
 //        myTimer = new Timer();
 //        myTimer.schedule(new TimerTask() {
 //            @Override
