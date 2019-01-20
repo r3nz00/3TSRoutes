@@ -9,12 +9,14 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.View;
 import android.widget.Adapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import android.util.Log;
+import android.widget.Button;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mainLayoutManager;
     private String[] testStrings = {"Static string", "Second Static String","1","2","3","4","1","2","3","4","1","2","3","4"};
     private ArrayList<String> myDataset = new ArrayList<String>(Arrays.asList(testStrings));
+    private Button addRouteButton;
 
     SwipeController swipeController;
     ItemTouchHelper itemTouchhelper;
@@ -70,6 +73,13 @@ public class MainActivity extends AppCompatActivity {
         itemTouchhelper = new ItemTouchHelper(swipeController);
         itemTouchhelper.attachToRecyclerView(mainRecyclerView);
 
+        addRouteButton = (Button) findViewById(R.id.floatingActionButton);
+        addRouteButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent addRouteIntent = new Intent(this, AddRoute.class);
+                startActivity(addRouteIntent);
+            }
+        });
 //        myTimer = new Timer();
 //        myTimer.schedule(new TimerTask() {
 //            @Override
