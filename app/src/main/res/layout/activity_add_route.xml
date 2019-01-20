@@ -9,7 +9,7 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.NoActionBar.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay">
 
 
 
@@ -17,8 +17,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@android:color/holo_red_dark"
-            app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay">
+            android:background="@android:color/holo_red_dark">
 
             <TextView
                 android:id="@+id/textView"
@@ -30,5 +29,37 @@
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:useDefaultMargins="true"
+        android:alignmentMode="alignBounds"
+        android:columnOrderPreserved="false"
+
+        android:columnCount="4"
+        >
+
+
+        <EditText
+            android:id="@+id/AddRouteTextField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@string/route_enter_field"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/route_enter_field"
+            android:autofillHints="" />
+
+        <Button
+            android:id="@+id/AddRouteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/add_route_button" />
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
