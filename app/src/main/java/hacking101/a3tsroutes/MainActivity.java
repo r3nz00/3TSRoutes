@@ -99,9 +99,9 @@ public class MainActivity extends AppCompatActivity {
         OpenDataController openData = OpenDataController.getInstance();
         openData.updateAllFeeds();
 //        Route route = new Route("8");
-        Intent intent = new Intent(this, MapActivity.class);
-        intent.putExtra(ROUTE_ID_EXTRA, 8);
-        startActivity(intent);
+//        Intent intent = new Intent(this, MapActivity.class);
+//        intent.putExtra(ROUTE_ID_EXTRA, 8);
+//        startActivity(intent);
     }
 
 //    public void othermethod(){
