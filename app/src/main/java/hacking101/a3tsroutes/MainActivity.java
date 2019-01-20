@@ -3,6 +3,7 @@ package hacking101.a3tsroutes;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.StrictMode;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private MainRecyclerViewAdapter mainRecycleViewAdapter;
     private RecyclerView.LayoutManager mainLayoutManager;
     private ArrayList<Route> myDataset = new ArrayList<Route>();
-    private Button addRouteButton;
+    private FloatingActionButton addRouteButton;
     private OpenDataController openData;
     private SwipeController swipeController;
     private ItemTouchHelper itemTouchhelper;
@@ -50,7 +51,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         openData = OpenDataController.getInstance();
+        openData.updateAllFeeds();
+
         mainRecyclerView = (RecyclerView) findViewById(R.id.MainRecyclerView);
 
         // use this setting to improve performance if you know that changes
@@ -61,8 +65,6 @@ public class MainActivity extends AppCompatActivity {
         mainLayoutManager = new LinearLayoutManager(this);
         mainRecyclerView.setLayoutManager(mainLayoutManager);
 
-
-        myDataset.add(new Route("8"));
         // specify an adapter (see also next example)
         mainRecycleViewAdapter = new MainRecyclerViewAdapter(myDataset, this);
         mainRecyclerView.setAdapter(mainRecycleViewAdapter);
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         itemTouchhelper = new ItemTouchHelper(swipeController);
         itemTouchhelper.attachToRecyclerView(mainRecyclerView);
 
-        addRouteButton = (Button) findViewById(R.id.floatingActionButton);
+        addRouteButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
         addRouteButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startRouteAdder();
@@ -105,8 +107,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        openData.updateAllFeeds();
+        myDataset.add(new Route("8"));
 //        Route route = new Route("8");
 //        Intent intent = new Intent(this, MapActivity.class);
 //        intent.putExtra(ROUTE_ID_EXTRA, 8);
