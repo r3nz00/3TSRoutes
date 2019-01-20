@@ -88,11 +88,11 @@ public class MainActivity extends AppCompatActivity {
 //        }, 0, 30000);
 
         // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("bus");
-
-        BusCapacity newBus = new BusCapacity("1234", "321", 15);
-        myRef.setValue(newBus);
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference("bus");
+//
+//        BusCapacity newBus = new BusCapacity("1234", "321", 15);
+//        myRef.setValue(newBus);
     }
 
     @Override

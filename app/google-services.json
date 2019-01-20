@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "168582151877",
+    "firebase_url": "https://tsroutes-42f61.firebaseio.com",
+    "project_id": "tsroutes-42f61",
+    "storage_bucket": "tsroutes-42f61.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:168582151877:android:97b79a2bcd094382",
+        "android_client_info": {
+          "package_name": "hacking101.a3tsroutes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "168582151877-odgnlafbgdnkb8e90309vh0skavno0i7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjSoZIRnSuqWsCWOC4y_cba7rY4e2L-iI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
