@@ -87,11 +87,9 @@ public class MapActivity extends AppCompatActivity {
                         for (BusStop b:bs) {
                             nodes.add(b.getPosition());
                         }
-                        for(Bus b:vehicles){
-                            MapWrapper.DrawBus(mapboxMap,mapView,getApplicationContext(),b.getPosition(),b.getBus_id());
-                        }
 
-                        MapWrapper.DrawRoute(mapboxMap,nodes,getApplicationContext());
+                        for (int i = 0; i < nodes.size() - 1; i++)
+                            MapWrapper.DrawRoute(mapboxMap,nodes.get(i), nodes.get(i+1), getApplicationContext());
                         getDeviceLocation(mapboxMap);
                     }
                 });

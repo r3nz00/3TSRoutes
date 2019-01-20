@@ -63,56 +63,44 @@ public class MapWrapper {
 
 
     @SuppressWarnings("deprecation")
-    public static void DrawRoute(final MapboxMap map, ArrayList<LatLng> nodes,Context app){
-        final String waypoints;
-        if(nodes.size() > 0) {
-            ArrayList<Point> newNodes = new ArrayList<>();
-//            for (LatLng latLng : nodes) {
-//                if (!(latLng.equals(nodes.get(0)) || latLng.equals(nodes.get(nodes.size() - 1)))) {
-//                    newNodes.add(Point.fromLngLat(latLng.getLongitude(), latLng.getLatitude()));
-//                }
-//            }
-//            newNodes.add(Point.fromLngLat(nodes.get(1).getLongitude(), nodes.get(1).getLatitude()));
-            Point start = Point.fromLngLat(nodes.get(0).getLongitude(), nodes.get(0).getLatitude());
-            Point fin = Point.fromLngLat(nodes.get(nodes.size() - 1).getLongitude(), nodes.get(nodes.size() - 1).getLatitude());
-            NavigationRoute.builder(app)
-                    .accessToken("pk.eyJ1IjoiY3VydGdnIiwiYSI6ImNqcjN4YmR2cDBieWo0M3J3eHM2NndzZ3YifQ.U94oGuGo_P6DTcbGYTZ4Eg")
-                    .origin(start)
-                    .destination(fin)
-                 //   .addWaypointTargets(newNodes.toArray(new Point[newNodes.size()]))
-                    .build()
-                    .getRoute(new Callback<DirectionsResponse>() {
-                        @Override
-                        public void onResponse(Call<DirectionsResponse> call, Response<DirectionsResponse> response) {
-                            Log.d("MAP", "Response code: " + response.code());
-                            if (response.body() == null) {
-                                Log.e("MAP", "No routes found, make sure you set the right user and access token.");
-                                return;
-                            } else if (response.body().routes().size() < 1) {
-                                Log.e("MAP", "No routes found");
-                                return;
-                            }
-
-                            DirectionsRoute currentRoute = response.body().routes().get(0);
-                            waypoints = currentRoute.geometry();
-                            List<Point> route = PolylineUtils.decode(waypoints, 6);
-                            ArrayList<LatLng> finalRoute = new ArrayList<>();
-                            for (Point p : route) {
-                                finalRoute.add(new LatLng(p.latitude(), p.longitude()));
-                            }
-                            map.addPolyline(new PolylineOptions()
-                                    .addAll(finalRoute)
-                                    .color(Color.CYAN)
-                                    .width(3));
+    public static void DrawRoute(final MapboxMap map, LatLng stopA, LatLng stopB, Context app){
+        Point start = Point.fromLngLat(stopA.getLongitude(), stopA.getLatitude());
+        Point fin = Point.fromLngLat(stopB.getLongitude(), stopB.getLatitude());
+        NavigationRoute.builder(app)
+                .accessToken("pk.eyJ1IjoiY3VydGdnIiwiYSI6ImNqcjN4YmR2cDBieWo0M3J3eHM2NndzZ3YifQ.U94oGuGo_P6DTcbGYTZ4Eg")
+                .origin(start)
+                .destination(fin)
+                .build()
+                .getRoute(new Callback<DirectionsResponse>() {
+                    @Override
+                    public void onResponse(Call<DirectionsResponse> call, Response<DirectionsResponse> response) {
+                        Log.d("MAP", "Response code: " + response.code());
+                        if (response.body() == null) {
+                            Log.e("MAP", "No routes found, make sure you set the right user and access token.");
+                            return;
+                        } else if (response.body().routes().size() < 1) {
+                            Log.e("MAP", "No routes found");
+                            return;
                         }
 
-                        @Override
-                        public void onFailure(Call<DirectionsResponse> call, Throwable throwable) {
-                            Log.e("MAP", "Error: " + throwable.getMessage());
+                        DirectionsRoute currentRoute = response.body().routes().get(0);
+                        String waypoints = currentRoute.geometry();
+                        List<Point> route = PolylineUtils.decode(waypoints, 6);
+                        ArrayList<LatLng> finalRoute = new ArrayList<>();
+                        for (Point p : route) {
+                            finalRoute.add(new LatLng(p.latitude(), p.longitude()));
                         }
-                    });
+                        map.addPolyline(new PolylineOptions()
+                                .addAll(finalRoute)
+                                .color(Color.CYAN)
+                                .width(3));
+                    }
 
-        }
+                    @Override
+                    public void onFailure(Call<DirectionsResponse> call, Throwable throwable) {
+                        Log.e("MAP", "Error: " + throwable.getMessage());
+                    }
+                });
     }
 
     @SuppressWarnings("deprecation")
