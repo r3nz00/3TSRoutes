@@ -39,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mainRecyclerView;
     private MainRecyclerViewAdapter mainRecycleViewAdapter;
     private RecyclerView.LayoutManager mainLayoutManager;
+
     private ArrayList<Route> myDataset = new ArrayList<Route>();
+
 
     private FloatingActionButton addRouteButton;
     private OpenDataController openData;
@@ -75,12 +77,12 @@ public class MainActivity extends AppCompatActivity {
         itemTouchhelper = new ItemTouchHelper(swipeController);
         itemTouchhelper.attachToRecyclerView(mainRecyclerView);
 
-        addRouteButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
-        addRouteButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startRouteAdder();
-            }
-        });
+//        addRouteButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+//        addRouteButton.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                startRouteAdder();
+//            }
+//        });
 //        myTimer = new Timer();
 //        myTimer.schedule(new TimerTask() {
 //            @Override
@@ -109,11 +111,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Set<String> route = Route.getRouteIds();
-
-        for (String routeId: route) {
-            myDataset.add(routeId);
-        }
 
 //        Route route = new Route("8");
 //        Intent intent = new Intent(this, MapActivity.class);

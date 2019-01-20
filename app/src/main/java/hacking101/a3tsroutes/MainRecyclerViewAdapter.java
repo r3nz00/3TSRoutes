@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import static hacking101.a3tsroutes.MapActivity.ROUTE_ID_EXTRA;
 
 public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerViewAdapter.MainViewHolder> {
-    private ArrayList<String> mainDataset;
+    private ArrayList<Route> mainDataset;
     private Activity activity;
 
     // Provide a reference to the views for each data item
@@ -35,7 +35,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
                 @Override
                 public void onClick(View v) {
                     Intent mapIntent = new Intent(activity, MapActivity.class);
-                    mapIntent.putExtra(ROUTE_ID_EXTRA, MainViewHolder.this.position);
+                    mapIntent.putExtra(ROUTE_ID_EXTRA, position);
                     activity.startActivity(mapIntent);
 //                    Log.d("OnClickTag", "You Clicked : " +
 //                            ((TextView) mainTextView.findViewById(R.id.Recycler_View_Next_Stop)).getText());
@@ -47,7 +47,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MainRecyclerViewAdapter(ArrayList<String> myDataset, Activity mainActivity) {
+    public MainRecyclerViewAdapter(ArrayList<Route> myDataset, Activity mainActivity) {
         mainDataset = myDataset;
         activity = mainActivity;
     }
@@ -71,10 +71,11 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 
+        holder.position = mainDataset.get(position).getRouteID();
+        ((TextView) holder.mainTextView.findViewById(R.id.Recycler_View_Route_Number)).setText(mainDataset.get(position).getRouteID());
 
-        ((TextView) holder.mainTextView.findViewById(R.id.Recycler_View_Route_Number)).setText(mainDataset.get(position).getRouteID());
-        ((TextView) holder.mainTextView.findViewById(R.id.Recycler_View_Route_Number)).setText(mainDataset.get(position).getRouteID());
-        ((TextView) holder.mainTextView.findViewById(R.id.Recycler_View_Route_Number)).setText(mainDataset.get(position).getRouteID());
+        ((TextView) holder.mainTextView.findViewById(R.id.Recycler_View_Next_Stop)).setText("Stop No: " + mainDataset.get(position).getStops().get(0).stop_id);
+        ((TextView) holder.mainTextView.findViewById(R.id.Recycler_View_Time_To_Next_Stop)).setText(""+mainDataset.get(position).getStops().get(0).getTime());
 
 //        ((TextView) holder.mainTextView.findViewById(R.id.Recycler_View_Bottom_Text)).setText(mainDataset[position+1]);
 //                setText(mainDataset[position]);
@@ -93,12 +94,12 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         this.notifyItemRangeChanged(position, this.getItemCount());
     }
 
-    public void addItem(String newItem){
+    public void addItem(Route newItem){
         mainDataset.add(0, newItem);
         this.notifyDataSetChanged();
     }
 
-    public void addItems(ArrayList<String> newItems){
+    public void addItems(ArrayList<Route> newItems){
         mainDataset.addAll(0, newItems);
         this.notifyDataSetChanged();
     }

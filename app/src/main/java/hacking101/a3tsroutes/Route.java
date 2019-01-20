@@ -27,13 +27,17 @@ public class Route {
                 if (stop == null)
                     continue;
 
-                if (stopTime.hasArrival())
+                if (stopTime.hasArrival()) {
                     stop.arrivalTime = stopTime.getArrival().getTime();
-                else if (stopTime.hasDeparture())
-                    stop.departureTime = stopTime.getDeparture().getTime() - (System.currentTimeMillis() / 1000L);
+                    stop.departureTime = 0;
+                }
+                else if (stopTime.hasDeparture()) {
+                    stop.arrivalTime = 0;
+                    stop.departureTime = stopTime.getDeparture().getTime();
+                }
 
                 stops.add(stop);
-                Log.i("RouteStop", stop.latitude + " " + stop.longitude);
+//                Log.i("RouteStop", stop.latitude + " " + stop.longitude);
             }
 
             buses.add(new Bus(trip.getVehicle().getId()));
@@ -53,10 +57,11 @@ public class Route {
     }
 
 
-    public static Set<String> getRouteIds() {
+    public static List<String> getRouteIds() {
+
         OpenDataController openData = OpenDataController.getInstance();
         openData.updateTripFeed();
-        HashSet<String> ids = new HashSet<>();
+        ArrayList<String> ids = new ArrayList<>();
         for (GtfsRealtime.FeedEntity entity: openData.getTripEntities()) {
             if (!entity.hasTripUpdate())
                 continue;

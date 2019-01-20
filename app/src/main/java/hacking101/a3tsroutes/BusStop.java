@@ -16,12 +16,19 @@ public class BusStop {
         return new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
     }
 
+    String getTime() {
+        if (arrivalTime == 0)
+            return "Arriving in: " + getEtdMinutes() + ":" + getEtdSeconds();
+        else
+            return "Departing in: " + getEtaMinutes() + ":" + getEtaSeconds();
+    }
+
     long getArrivalTimeUnix() {
-        return arrivalTime - (System.currentTimeMillis() / 1000L);
+        return (System.currentTimeMillis() / 1000L) - arrivalTime;
     }
 
     long getDepartureTimeUnix() {
-        return departureTime - (System.currentTimeMillis() / 1000L);
+        return (System.currentTimeMillis() / 1000L) - departureTime;
     }
 
     long getEtaMinutes() {

@@ -48,7 +48,7 @@ public class MapWrapper {
         CameraPosition cam = new CameraPosition.Builder()
                 .target(userPos)
                 .zoom(15)
-                .tilt(45)
+                .tilt(60)
                 .build();
         map.setCameraPosition(cam);
 
