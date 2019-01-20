@@ -19,6 +19,8 @@ public class Bus {
         this.current_pos = new LatLng(vehicle.getPosition().getLatitude(), vehicle.getPosition().getLongitude());
     }
 
+    public String getBus_id(){return this.bus_id;}
+
     public void updateCurrentPos() {
         // update current position of the bus
 

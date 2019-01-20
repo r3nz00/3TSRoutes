@@ -64,6 +64,7 @@ public class MapWrapper {
 
     @SuppressWarnings("deprecation")
     public static void DrawRoute(final MapboxMap map, ArrayList<LatLng> nodes,Context app){
+        final String waypoints;
         if(nodes.size() > 0) {
             ArrayList<Point> newNodes = new ArrayList<>();
 //            for (LatLng latLng : nodes) {
@@ -93,7 +94,7 @@ public class MapWrapper {
                             }
 
                             DirectionsRoute currentRoute = response.body().routes().get(0);
-                            String waypoints = currentRoute.geometry();
+                            waypoints = currentRoute.geometry();
                             List<Point> route = PolylineUtils.decode(waypoints, 6);
                             ArrayList<LatLng> finalRoute = new ArrayList<>();
                             for (Point p : route) {
@@ -110,7 +111,7 @@ public class MapWrapper {
                             Log.e("MAP", "Error: " + throwable.getMessage());
                         }
                     });
-            ;
+
         }
     }
 
